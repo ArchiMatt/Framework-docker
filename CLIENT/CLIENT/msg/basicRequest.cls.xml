@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="CLIENT.msg.basicRequest">
+<Super>Ens.Request</Super>
+<TimeCreated>64603,55854.525267</TimeCreated>
+
+<Property name="user">
+<Type>%String</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>basicRequestDefaultData</DefaultData>
+<Data name="basicRequestDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"basicRequest"</Subscript>
+<Value name="1">
+<Value>user</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

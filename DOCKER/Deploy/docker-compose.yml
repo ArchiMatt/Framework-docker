@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  iris:
+    build: 
+      context: ../../
+      dockerfile: ./DOCKER/Deploy/Dockerfile
+    image: framework:latest
+    restart: always
+    #command: --check-caps false
+    ports:
+      - 1972:1972 
+      - 51773
+      - 52773:52773
+      - 53773
+    volumes:
+      - databases-framework-docker:/databases
+      - ../../:/opt/iriscode/
+volumes:
+   databases-framework-docker:
+    external: true

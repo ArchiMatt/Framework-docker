@@ -1,0 +1,30 @@
+    set srcFolder = "/opt/irisapp"
+    do ##class(%SYSTEM.Process).CurrentDirectory(srcFolder)
+
+    //On liste les namespaces pour lesquelles ont a au moins une WebApp
+    set listeNS = ""
+    do ##class(App.File).getNamespaceList(srcFolder, "WebApps", ".xml", .listeNS)
+
+    //On installe les applications WEB
+    set next=0
+    while $LISTNEXT(listeNS,next,value) '= 0 { do ##class(App.File).installWebApplications(value,srcFolder) }
+
+    //On liste les namespaces pour lesquelles ont a des default settings
+    set listeNS = ""
+    do ##class(App.File).getNamespaceList(srcFolder, "DefaultSettings", ".xml", .listeNS)
+
+    //On installer les default settings
+    set next=0
+    while $LISTNEXT(listeNS,next,value) '= 0 { do ##class(App.File).installDefaultSettingsNamespace(value,srcFolder) }
+
+
+    //On liste les namespaces pour lesquelles ont a des deployer
+    set listeNS = ""
+    do ##class(App.File).getNamespaceList(srcFolder, "Deployer", ".cls", .listeNS)
+
+
+    // On lance enfin les deployer.
+    do ##class(App.File).deployNamespaces(listeNS,srcFolder) 
+
+
+    halt

@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../FACTURE"
+		},
+		{
+			"path": "../CLIENT"
+		},
+		{
+			"path": "../DOCKER"
+		}
+	],
+	"settings": {
+		"objectscript.showExplorer": true,
+		"files.associations": {
+			"Dockerfile*": "dockerfile",
+			"*.script": "objectscript"
+		},
+		"objectscript.conn": {
+			"active": true
+		}
+	}
+}

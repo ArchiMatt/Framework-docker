@@ -1,0 +1,7 @@
+{
+    "objectscript.conn": {
+        "server": "framework",
+        "ns": "CLIENT",
+        "active": true
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+    
+        "Dockerfile*": "dockerfile",
+        "*.script": "objectscript"
+    },
+    "objectscript.conn": {
+        "server": "FRAMEWORK",
+        "ns": "FACTURE",
+        "active": false
+    },
+    "objectscript.conn": {
+        "server": "formation_matthieu",
+        "ns": "CLIENT",
+        "active": false
+    }
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+<Class name="FACTURE.msg.basicResponse">
+<Super>Ens.Response</Super>
+<TimeCreated>64603,55871.683792</TimeCreated>
+
+<Property name="codeRetour">
+<Type>%String</Type>
+</Property>
+
+<Property name="codeErreur">
+<Type>%Integer</Type>
+</Property>
+
+<Storage name="Default">
+<Type>%Library.CacheStorage</Type>
+<DefaultData>basicResponseDefaultData</DefaultData>
+<Data name="basicResponseDefaultData">
+<Structure>listnode</Structure>
+<Subscript>"basicResponse"</Subscript>
+<Value name="1">
+<Value>codeRetour</Value>
+</Value>
+<Value name="2">
+<Value>codeErreur</Value>
+</Value>
+</Data>
+</Storage>
+</Class>
+</Export>

@@ -1,0 +1,3 @@
+%SourceControl.pkg
+<cspapp>/gitprojectsettings.csp
+cache-tort-git.prj

@@ -1,0 +1,37 @@
+    // Pour éviter de devoir modifier le mdp SuperUser.
+    zn "%SYS"
+    w ##class(Security.Users).UnExpireUserPasswords("*")
+
+
+    //// On crée le user avec la ressource SourceControl qui va gérer le git
+    do ##class(Security.Resources).Create("SourceControl", "Resource for SourceControl.Git REST endpoint", "")
+    do ##class(Security.Roles).Create("SourceControl", "Role for SourceControl.Git REST endpoint", "SourceControl:U")
+    do ##class(Security.Users).Create("git", "SourceControl", "git", "Technical User for SourceControl.Git REST endpoint")
+
+    set listePackageParNS = ##class(%ArrayOfDataTypes).%New()
+    set listeNS = ""
+
+    //On installe ZPM
+    set $namespace="%SYS", name="DefaultSSL" do:'##class(Security.SSLConfigs).Exists(name) ##class(Security.SSLConfigs).Create(name) set url="https://pm.community.intersystems.com/packages/zpm/latest/installer" Do ##class(%Net.URLParser).Parse(url,.comp) set ht = ##class(%Net.HttpRequest).%New(), ht.Server = comp("host"), ht.Port = 443, ht.Https=1, ht.SSLConfiguration=name, st=ht.Get(comp("path")) quit:'st $System.Status.GetErrorText(st) set xml=##class(%File).TempFilename("xml"), tFile = ##class(%Stream.FileBinary).%New(), tFile.Filename = xml do tFile.CopyFromAndSave(ht.HttpResponse.Data) do ht.%Close(), $system.OBJ.Load(xml,"ck") do ##class(%File).Delete(xml)
+    
+    set srcFolder = "/opt/irisapp"
+    do ##class(%SYSTEM.Process).CurrentDirectory(srcFolder)
+
+    //On charge une classe générique qui va faire nos installations
+    do $SYSTEM.OBJ.Load("File.cls", "ck")
+
+    do ##class(App.File).getNamespaceListAndPackages(srcFolder, "Installer", ".cls", .listeNS, .listePackageParNS)
+
+    //On installe tous les namespaces listés
+    do ##class(App.File).installNamespaces(listeNS,srcFolder)
+
+
+    set next = 0
+    while $LISTNEXT(listeNS,next,value) '= 0 { do ##class(App.File).installGitNamespace(value,listePackageParNS.GetAt(value)) }
+
+
+
+    
+
+
+    halt
