@@ -85,7 +85,6 @@ Il va déployer :
 # Stockage des BDD en local
 
 
-Les BDD locales sont stockées dans 
-> C:\docker\volumes\databases\formation-matthieu
+Les BDD locales sont stockées dans le dossier créé au début
 
 Attention : Si ce dossier n'est pas vide, il viendra écraser les BDD du container au démarrage. Si vous supprimez une BDD, elle n'existera plus au démarrage du container même si ce dernier existe dans l'image déployée.
